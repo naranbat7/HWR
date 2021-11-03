@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MainAppBar extends PreferredSize {
   MainAppBar(BuildContext context)
@@ -8,6 +9,8 @@ class MainAppBar extends PreferredSize {
             elevation: 0,
             iconTheme: IconThemeData(color: Theme.of(context).cardColor),
             backgroundColor: Colors.transparent,
+            backwardsCompatibility: false,
+            systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
           ),
         );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:hwr_app/routes/route_names.dart';
 import 'package:hwr_app/widgets/appbar/main_appbar.dart';
 import 'package:hwr_app/widgets/button/main_button.dart';
 import 'package:hwr_app/widgets/drawer/index.dart';
@@ -8,11 +9,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: MainAppBar(context),
-      endDrawer: CustomDrawer(),
-      body: SafeArea(
-        child: Stack(
+    return SafeArea(
+      child: Scaffold(
+        appBar: MainAppBar(context),
+        endDrawer: CustomDrawer(context),
+        body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             Image.asset(
@@ -45,7 +46,10 @@ class HomePage extends StatelessWidget {
                   Expanded(
                     child: Align(
                       alignment: Alignment.bottomCenter,
-                      child: MainButton(title: "start".tr(), onPress: () {}),
+                      child: MainButton(
+                        title: "start".tr(),
+                        onPress: () => Navigator.pushNamed(context, RouteName.TUTORIAL),
+                      ),
                     ),
                   ),
                 ],

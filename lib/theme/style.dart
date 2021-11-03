@@ -279,7 +279,7 @@ final ThemeData customTheme = ThemeData(
     unselectedLabelColor: Color(0xb2ffffff),
   ),
   chipTheme: ChipThemeData(
-    backgroundColor: Color(0x1f000000),
+    backgroundColor: Color(0xffEEDAD1),
     brightness: Brightness.light,
     deleteIconColor: Color(0xde000000),
     disabledColor: Color(0x0c000000),
