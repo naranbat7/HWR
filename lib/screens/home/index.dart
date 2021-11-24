@@ -9,11 +9,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        appBar: MainAppBar(context),
-        endDrawer: CustomDrawer(context),
-        body: Stack(
+    return Scaffold(
+      appBar: MainAppBar(context),
+      endDrawer: CustomDrawer(context),
+      body: SafeArea(
+        child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             Image.asset(

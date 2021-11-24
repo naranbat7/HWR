@@ -10,46 +10,48 @@ class CustomDrawer extends SizedBox {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               color: Theme.of(context).dialogBackgroundColor,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  InkWell(
-                    onTap: () => Navigator.pop(context),
-                    child: ClipOval(
-                      child: Container(
-                        width: 35,
-                        height: 35,
-                        color: Theme.of(context).chipTheme.backgroundColor,
-                        child: Icon(
-                          Icons.close,
-                          color: Theme.of(context).dialogBackgroundColor,
-                          size: 25,
+              child: SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: ClipOval(
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          color: Theme.of(context).chipTheme.backgroundColor,
+                          child: Icon(
+                            Icons.close,
+                            color: Theme.of(context).dialogBackgroundColor,
+                            size: 25,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: ListView(
-                      padding: EdgeInsets.zero,
-                      children: [
-                        SizedBox(height: 15),
-                        _tileBuilder(
-                          context,
-                          title: "home".tr(),
-                          icon: Icon(Icons.home_outlined, size: 22),
-                          onPress: () => Navigator.pop(context),
-                          isActive: true,
-                        ),
-                        _tileBuilder(
-                          context,
-                          title: "history".tr(),
-                          icon: Icon(Icons.book_outlined, size: 20),
-                          onPress: () => Navigator.pushNamed(context, RouteName.HISTORY),
-                        ),
-                      ],
+                    Expanded(
+                      child: ListView(
+                        padding: EdgeInsets.zero,
+                        children: [
+                          SizedBox(height: 15),
+                          _tileBuilder(
+                            context,
+                            title: "home".tr(),
+                            icon: Icon(Icons.home_outlined, size: 22),
+                            onPress: () => Navigator.pop(context),
+                            isActive: true,
+                          ),
+                          _tileBuilder(
+                            context,
+                            title: "history".tr(),
+                            icon: Icon(Icons.book_outlined, size: 20),
+                            onPress: () => Navigator.pushNamed(context, RouteName.HISTORY),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

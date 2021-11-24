@@ -18,8 +18,6 @@ final ThemeData customTheme = ThemeData(
   primaryColorBrightness: Brightness.dark,
   primaryColorLight: Color(0xffe0e2eb),
   primaryColorDark: Color(0xff3c435d),
-  accentColor: Color(0xff656f9a),
-  accentColorBrightness: Brightness.dark,
   canvasColor: Color(0xfffafafa),
   scaffoldBackgroundColor: Color(0xff383E56),
   bottomAppBarColor: Color(0xffffffff),
@@ -30,14 +28,13 @@ final ThemeData customTheme = ThemeData(
   selectedRowColor: Color(0xfff5f5f5),
   unselectedWidgetColor: Color(0x8a000000),
   disabledColor: Color(0x61000000),
-  buttonColor: Color(0xffF69E7B),
   toggleableActiveColor: Color(0xff50597c),
   secondaryHeaderColor: Color(0xfff0f1f5),
   backgroundColor: Color(0xffc1c6d7),
   dialogBackgroundColor: Color(0xffD4B5B0),
   indicatorColor: Color(0xff656f9a),
   hintColor: Color(0x8a000000),
-  errorColor: Color(0xffd32f2f),
+  errorColor: Color(0xffF69E7B),
   buttonTheme: ButtonThemeData(
     textTheme: ButtonTextTheme.normal,
     minWidth: 88,
@@ -98,26 +95,6 @@ final ThemeData customTheme = ThemeData(
     ),
   ),
   primaryTextTheme: TextTheme(
-    caption: TextStyle(
-      color: Color(0xb3ffffff),
-      fontSize: null,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    button: TextStyle(
-      color: Color(0xffffffff),
-      fontSize: null,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    overline: TextStyle(
-      color: Color(0xffffffff),
-      fontSize: null,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-  ),
-  accentTextTheme: TextTheme(
     caption: TextStyle(
       color: Color(0xb3ffffff),
       fontSize: null,
@@ -241,11 +218,6 @@ final ThemeData customTheme = ThemeData(
     size: 24,
   ),
   primaryIconTheme: IconThemeData(
-    color: Color(0xff383E56),
-    opacity: 1,
-    size: 24,
-  ),
-  accentIconTheme: IconThemeData(
     color: Color(0xff383E56),
     opacity: 1,
     size: 24,

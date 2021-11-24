@@ -9,8 +9,7 @@ class MainAppBar extends PreferredSize {
             elevation: 0,
             iconTheme: IconThemeData(color: Theme.of(context).cardColor),
             backgroundColor: Colors.transparent,
-            backwardsCompatibility: false,
-            systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+            systemOverlayStyle: SystemUiOverlayStyle.light,
           ),
         );
 }

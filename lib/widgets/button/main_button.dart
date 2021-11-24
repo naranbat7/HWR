@@ -10,7 +10,7 @@ class MainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor),
+        backgroundColor: MaterialStateProperty.all(Theme.of(context).errorColor),
         minimumSize: MaterialStateProperty.all(Size(200, 50)),
         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
       ),
