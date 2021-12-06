@@ -15,7 +15,7 @@ class MainButton extends StatelessWidget {
         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
       ),
       onPressed: onPress,
-      child: Text(title),
+      child: Text(title, style: TextStyle(fontSize: 24)),
     );
   }
 }

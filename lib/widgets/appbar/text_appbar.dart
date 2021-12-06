@@ -14,6 +14,7 @@ class TextAppBar extends PreferredSize {
             elevation: 0,
             backgroundColor: Colors.transparent,
             systemOverlayStyle: SystemUiOverlayStyle.light,
+            centerTitle: true,
           ),
         );
 }
