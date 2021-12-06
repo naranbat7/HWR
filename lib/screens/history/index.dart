@@ -8,6 +8,8 @@ import 'package:hwr_app/widgets/appbar/text_appbar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hwr_app/widgets/card/history_card.dart';
 import 'package:hwr_app/widgets/container/line_container.dart';
+import 'package:hwr_app/widgets/line/index.dart';
+import 'package:hwr_app/widgets/placeholder/index.dart';
 
 class HistoryPage extends StatefulWidget {
   @override
@@ -27,27 +29,27 @@ class _HistoryPageState extends State<HistoryPage> {
     String tmp = await LocalStorage.getItem(PrefsKey.HISTORY.value, "");
     setState(() {
       if (tmp.isNotEmpty) data = PsychoModel.fromList(jsonDecode(tmp));
-      data.add(PsychoModel(
-        id: 1,
-        createdDate: "2021-10-10 14:00:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 2,
-        createdDate: "2021-10-11 14:21:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
+      // data.add(PsychoModel(
+      //   id: 1,
+      //   createdDate: "2021-10-10 14:00:01",
+      //   description: "asd sadsa asd sadsa das ",
+      //   imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
+      //   personalityType: "ENFJ",
+      // ));
+      // data.add(PsychoModel(
+      //   id: 2,
+      //   createdDate: "2021-10-11 14:21:01",
+      //   description: "asd sadsa asd sadsa das ",
+      //   imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
+      //   personalityType: "ENFJ",
+      // ));
+      // data.add(PsychoModel(
+      //   id: 3,
+      //   createdDate: "2021-9-10 14:45:01",
+      //   description: "asd sadsa asd sadsa das ",
+      //   imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
+      //   personalityType: "ENFJ",
+      // ));
     });
   }
 
@@ -60,21 +62,20 @@ class _HistoryPageState extends State<HistoryPage> {
         child: LineContainerBackground(
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.15, right: width * 0.15),
-                child: Container(height: 1, color: Theme.of(context).errorColor),
-              ),
+              HeaderLine(),
               SizedBox(height: 20),
               Expanded(
-                child: Scrollbar(
-                  child: ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: (context, idx) => Padding(
-                      padding: EdgeInsets.only(left: width * 0.15, right: width * 0.15, bottom: 15),
-                      child: HistoryCard(data[idx]),
-                    ),
-                  ),
-                ),
+                child: data.isEmpty
+                    ? MainPlaceholder()
+                    : Scrollbar(
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (context, idx) => Padding(
+                            padding: EdgeInsets.only(left: width * 0.15, right: width * 0.15, bottom: 15),
+                            child: HistoryCard(data[idx]),
+                          ),
+                        ),
+                      ),
               ),
             ],
           ),

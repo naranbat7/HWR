@@ -3,7 +3,10 @@ import 'package:flutter/foundation.dart';
 /// Local Storage key [Shared Preferences] -ийн түлхүүрийг нэгтгэх [enum]
 enum PrefsKey {
   /// [HISTORY] -> хамгийн анх удаа татсан
-  HISTORY
+  HISTORY,
+
+  /// [TIP] -> хамгийн анх удаа татсан
+  TIP
 }
 
 /// [PrefsKey] enum -ийг боловсруулах [extension]
@@ -15,6 +18,8 @@ extension PrefsKeyExtension on PrefsKey {
     switch (this) {
       case PrefsKey.HISTORY:
         return "history";
+      case PrefsKey.TIP:
+        return "tip";
       default:
         return "";
     }
