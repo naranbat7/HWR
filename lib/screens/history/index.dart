@@ -7,6 +7,7 @@ import 'package:hwr_app/services/local_storage/index.dart';
 import 'package:hwr_app/widgets/appbar/text_appbar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hwr_app/widgets/card/history_card.dart';
+import 'package:hwr_app/widgets/container/line_container.dart';
 
 class HistoryPage extends StatefulWidget {
   @override
@@ -47,76 +48,6 @@ class _HistoryPageState extends State<HistoryPage> {
         imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
         personalityType: "ENFJ",
       ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
-      data.add(PsychoModel(
-        id: 3,
-        createdDate: "2021-9-10 14:45:01",
-        description: "asd sadsa asd sadsa das ",
-        imageUrl: "https://i.pinimg.com/originals/3e/ff/d4/3effd4a1437af491adefa54936d611d7.png",
-        personalityType: "ENFJ",
-      ));
     });
   }
 
@@ -126,25 +57,27 @@ class _HistoryPageState extends State<HistoryPage> {
     return Scaffold(
       appBar: TextAppBar(context, title: "history".tr()),
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: width * 0.15, right: width * 0.15),
-              child: Container(height: 1, color: Theme.of(context).errorColor),
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: Scrollbar(
-                child: ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context, idx) => Padding(
-                    padding: EdgeInsets.only(left: width * 0.15, right: width * 0.15, bottom: 15),
-                    child: HistoryCard(data[idx]),
+        child: LineContainerBackground(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: width * 0.15, right: width * 0.15),
+                child: Container(height: 1, color: Theme.of(context).errorColor),
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: Scrollbar(
+                  child: ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, idx) => Padding(
+                      padding: EdgeInsets.only(left: width * 0.15, right: width * 0.15, bottom: 15),
+                      child: HistoryCard(data[idx]),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
