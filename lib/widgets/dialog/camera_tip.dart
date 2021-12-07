@@ -23,6 +23,7 @@ class _CameraTipDialogState extends State<CameraTipDialog> {
 
   _onSubmit() {
     if (_isChecked) LocalStorage.getItem(PrefsKey.TIP.value, "true");
+    Navigator.pop(context);
     Navigator.pushNamed(context, RouteName.CAMERA);
   }
 
