@@ -5,12 +5,11 @@ part 'psycho.g.dart';
 @JsonSerializable()
 class PsychoModel {
   int? id;
-  String? createdDate, imageUrl, description, personalityType;
+  String? createdDate, imageUrl, personalityType;
 
   PsychoModel({
     this.id,
     this.createdDate,
-    this.description,
     this.imageUrl,
     this.personalityType,
   });

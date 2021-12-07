@@ -4,7 +4,7 @@ class CustomUtils {
   static String str2datetime(String value) {
     DateTime tmp;
     try {
-      tmp = DateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
+      tmp = DateFormat("yyyy-MM-ddTHH:mm:ss").parse(value);
     } catch (ex) {
       tmp = DateTime.now();
     }
