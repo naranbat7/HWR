@@ -22,9 +22,5 @@
     {
         "merged": "/home/naba/Documents/hwr/mobile/build/app/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "/home/naba/Documents/hwr/mobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/home/naba/Documents/hwr/mobile/build/app/intermediates/res/merged/debug/drawable_launch_background.xml.flat",
-        "source": "/home/naba/Documents/hwr/mobile/android/app/src/main/res/drawable/launch_background.xml"
     }
 ]
