@@ -7,6 +7,7 @@ import 'package:hwr_app/bloc/index.dart';
 import 'package:hwr_app/model/psycho.dart';
 import 'package:hwr_app/routes/route_names.dart';
 import 'package:hwr_app/screens/success/index.dart';
+import 'package:hwr_app/widgets/button/main_button.dart';
 import 'package:hwr_app/widgets/container/main_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -48,7 +49,7 @@ class _LoadingPageState extends State<LoadingPage> {
   ];
   Timer? _timer;
   final _bloc = CommonBloc(CommonInitial());
-  PsychoModel? data;
+  PsychoModel? _data;
   int _imageIdx = 1;
   String _loader = ".";
 
@@ -78,7 +79,13 @@ class _LoadingPageState extends State<LoadingPage> {
   }
 
   _onSuccess(PsychoModel data) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => SuccessPage(data)));
+    setState(() {
+      _data = data;
+    });
+  }
+
+  _onNext() {
+    if (_data != null) Navigator.push(context, MaterialPageRoute(builder: (_) => SuccessPage(_data!)));
   }
 
   @override
@@ -123,14 +130,16 @@ class _LoadingPageState extends State<LoadingPage> {
                           ],
                         ),
                       ),
-                      Text(
-                        "loading".tr() + _loader,
-                        style: TextStyle(
-                          color: Theme.of(context).errorColor,
-                          fontFamily: "Pacifico",
-                          fontSize: 24,
-                        ),
-                      ),
+                      _data == null
+                          ? Text(
+                              "loading".tr() + _loader,
+                              style: TextStyle(
+                                color: Theme.of(context).errorColor,
+                                fontFamily: "Pacifico",
+                                fontSize: 24,
+                              ),
+                            )
+                          : MainButton(title: "Үр дүн харах", onPress: _onNext),
                     ],
                   ),
                 ),
