@@ -33,7 +33,7 @@ class TutorialPage extends StatelessWidget {
                     HeaderLine(hasPadding: false),
                     SizedBox(height: 20),
                     Expanded(
-                      child: Placeholder(),
+                      child: Image.asset("assets/camera.gif"),
                     ),
                     SizedBox(height: 20),
                     HeaderLine(hasPadding: false),
