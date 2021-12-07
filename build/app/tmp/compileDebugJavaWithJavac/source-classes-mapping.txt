@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-mn/edu/num/hwr_app/BuildConfig.java
- mn.edu.num.hwr_app.BuildConfig
