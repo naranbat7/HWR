@@ -2,6 +2,7 @@ import cv2
 import pytesseract
 import numpy as np
 import pickle
+import collections
 
 
 personalities = {
@@ -117,12 +118,8 @@ def is_handwritten(img):
     return result
 
 
-def predict_personality(inputImg):
-    threshold = 0.08
-    pickle_in = open("sample/model_trained.p", "rb")
-    model = pickle.load(pickle_in)
-
-    # success, imgOriginal = handwriting
+def predict_words(inputImg, model):
+    threshold = 0.1
     imgOriginal = inputImg
     img = np.asarray(inputImg)
     img = cv2.resize(img, (32, 32))
@@ -133,14 +130,53 @@ def predict_personality(inputImg):
     predict_x = model.predict(img)
     classes_x = np.argmax(predict_x, axis=1)
     classIndex = int(classes_x)
-    # print(classIndex)
     predictions = model.predict(img)
-    # print(predictions)
-    # Element with highest number
     probabilityValue = np.amax(predictions)
-    print(classIndex, probabilityValue)
+    # print(classIndex, probabilityValue)
 
     if probabilityValue > threshold:
+        return classIndex
+
+
+def find_words(inputImg, model):
+    # Pytesseract дээр RGB-г дэмждэг бол OpenCV дээр BGR байдаг.
+    img = cv2.cvtColor(inputImg, cv2.COLOR_BGR2RGB)
+    h_img, w_img, _ = img.shape
+    cong = r'--oem 3 --psm 6'
+    boxes = pytesseract.image_to_data(img, config=cong)
+    classes = []
+
+    for cnt, b in enumerate(boxes.splitlines()):
+        if cnt != 0:
+            b = b.split()
+            # print(b)
+            x, y, w, h = int(b[6]), int(b[7]), int(b[8]), int(b[9])
+            crop_img = img[y:y + h, x:x + w]
+            # cv2.imshow("cropped", crop_img)
+            # cv2.waitKey(0)
+            classes.append(predict_words(crop_img, model))
+
+    count = collections.Counter(classes)
+    print(count.most_common(1))
+    return count.most_common(1)
+
+
+def predict_personality(inputImg):
+    try:
+        threshold = 0.08
+        pickle_in = open("sample/model_trained.p", "rb")
+        model = pickle.load(pickle_in)
+
+        classIndex = find_words(inputImg, model)
+
         for key in personalities:
             if key == classIndex:
+                print(personalities[key])
                 return personalities[key]
+    except KeyboardInterrupt:
+        print("ENFJ")
+        return "ENFJ"
+    else:
+        print("ENFJ")
+        return "ENFJ"
+
