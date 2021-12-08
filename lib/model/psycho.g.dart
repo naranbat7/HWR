@@ -8,10 +8,10 @@ part of 'psycho.dart';
 
 PsychoModel _$PsychoModelFromJson(Map<String, dynamic> json) {
   return PsychoModel(
-    id: json['id'] as int?,
-    createdDate: json['createdDate'] as String?,
-    imageUrl: json['imageUrl'] as String?,
-    personalityType: json['personalityType'] as String?,
+    id: json['id'] as String?,
+    createdDate: json['createdDate'] as String,
+    imageUrl: json['imageUrl'] as String,
+    personalityType: json['personalityType'] as String,
   );
 }
 

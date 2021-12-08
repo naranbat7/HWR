@@ -7,6 +7,10 @@ import 'package:hwr_app/widgets/container/main_container.dart';
 import 'package:hwr_app/widgets/drawer/index.dart';
 
 class HomePage extends StatelessWidget {
+  _onNext(context) {
+    Navigator.pushNamed(context, RouteName.TUTORIAL);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -39,10 +43,7 @@ class HomePage extends StatelessWidget {
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: MainButton(
-                      title: "start".tr(),
-                      onPress: () => Navigator.pushNamed(context, RouteName.TUTORIAL),
-                    ),
+                    child: MainButton(title: "start".tr(), onPress: () => _onNext(context)),
                   ),
                 ),
               ],

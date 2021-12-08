@@ -24,7 +24,7 @@ class HistoryCard extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                data.createdDate != null ? CustomUtils.str2datetime(data.createdDate!) : "",
+                CustomUtils.str2datetime(data.createdDate),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,

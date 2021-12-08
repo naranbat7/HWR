@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:hwr_app/model/result.dart';
 
 enum PersonalityType {
   ENFJ,
@@ -64,6 +65,174 @@ extension PersonalityTypeExtension on PersonalityType {
         return "ESTJ";
       case PersonalityType.ISTJ:
         return "ISTJ";
+    }
+  }
+
+  ResultModel get result {
+    switch (this) {
+      case PersonalityType.ENFJ:
+        return ResultModel(
+            title: "Protagonist",
+            category: "Diplomats",
+            url: this.label,
+            mind: 61,
+            energy: 55,
+            nature: 46,
+            tactics: 58,
+            identity: 40);
+      case PersonalityType.INFJ:
+        return ResultModel(
+            title: "Advocate",
+            category: "Diplomats",
+            url: this.label,
+            mind: 24,
+            energy: 51,
+            nature: 47,
+            tactics: 63,
+            identity: 31);
+      case PersonalityType.ESFJ:
+        return ResultModel(
+            title: "Consul",
+            category: "Sentinels",
+            url: this.label,
+            mind: 52,
+            energy: 46,
+            nature: 44,
+            tactics: 57,
+            identity: 56);
+      case PersonalityType.ISFJ:
+        return ResultModel(
+            title: "Defender",
+            category: "Sentinels",
+            url: this.label,
+            mind: 41,
+            energy: 51,
+            nature: 43,
+            tactics: 40,
+            identity: 68);
+
+      case PersonalityType.ENFP:
+        return ResultModel(
+            title: "Campaigner",
+            category: "Diplomats",
+            url: this.label,
+            mind: 64,
+            energy: 59,
+            nature: 27,
+            tactics: 37,
+            identity: 69);
+      case PersonalityType.INFP:
+        return ResultModel(
+            title: "Mediator",
+            category: "Diplomats",
+            url: this.label,
+            mind: 41,
+            energy: 51,
+            nature: 43,
+            tactics: 40,
+            identity: 68);
+      case PersonalityType.ESFP:
+        return ResultModel(
+            title: "Entertainer",
+            category: "Explorers",
+            url: this.label,
+            mind: 54,
+            energy: 61,
+            nature: 54,
+            tactics: 53,
+            identity: 36);
+      case PersonalityType.ISFP:
+        return ResultModel(
+            title: "Adventurer",
+            category: "Explorers",
+            url: this.label,
+            mind: 22,
+            energy: 37,
+            nature: 41,
+            tactics: 49,
+            identity: 49);
+
+      case PersonalityType.ENTP:
+        return ResultModel(
+            title: "Architect",
+            category: "Analysts",
+            url: this.label,
+            mind: 24,
+            energy: 51,
+            nature: 47,
+            tactics: 63,
+            identity: 31);
+      case PersonalityType.INTP:
+        return ResultModel(
+            title: "Logician",
+            category: "Analysts",
+            url: this.label,
+            mind: 24,
+            energy: 51,
+            nature: 47,
+            tactics: 63,
+            identity: 31);
+      case PersonalityType.ESTP:
+        return ResultModel(
+            title: "Entrepreneur",
+            category: "Explorers",
+            url: this.label,
+            mind: 54,
+            energy: 61,
+            nature: 54,
+            tactics: 53,
+            identity: 36);
+      case PersonalityType.ISTP:
+        return ResultModel(
+            title: "Virtuoso",
+            category: "Explorers",
+            url: this.label,
+            mind: 36,
+            energy: 34,
+            nature: 54,
+            tactics: 42,
+            identity: 49);
+
+      case PersonalityType.ENTJ:
+        return ResultModel(
+            title: "Commander",
+            category: "Analysts",
+            url: this.label,
+            mind: 54,
+            energy: 61,
+            nature: 54,
+            tactics: 53,
+            identity: 36);
+      case PersonalityType.INTJ:
+        return ResultModel(
+            title: "Debater",
+            category: "Analysts",
+            url: this.label,
+            mind: 24,
+            energy: 51,
+            nature: 47,
+            tactics: 63,
+            identity: 31);
+      case PersonalityType.ESTJ:
+        return ResultModel(
+            title: "Executive",
+            category: "Sentinels",
+            url: this.label,
+            mind: 41,
+            energy: 51,
+            nature: 43,
+            tactics: 40,
+            identity: 68);
+      case PersonalityType.ISTJ:
+        return ResultModel(
+            title: "Logistician",
+            category: "Sentinels",
+            url: this.label,
+            mind: 49,
+            energy: 45,
+            nature: 52,
+            tactics: 60,
+            identity: 47);
     }
   }
 
