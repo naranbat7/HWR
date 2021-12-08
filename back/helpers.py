@@ -1,6 +1,22 @@
 import cv2
 import pytesseract
 import numpy as np
+import pickle
+
+
+personalities = {
+    1: "ENFJ",
+    2: "ENFP",
+    3: "ENTJ",
+    4: "ESFJ",
+    5: "INFJ",
+    6: "INFP",
+    7: "INTP",
+    8: "ISFJ",
+    9: "ISFP",
+    10: "ISTJ",
+    11: "ISTP"
+}
 
 
 def display_img(title, img):
@@ -71,7 +87,7 @@ def high_boost_filtering(grayimg):
 def preprocess_image(img):
     # processed_img = high_boost_filtering(grayimg)
     grayimg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    (threshold, img_bw) = cv2.threshold(grayimg, 115, 255, cv2.THRESH_BINARY)
+    (threshold, img_bw) = cv2.threshold(grayimg, 100, 255, cv2.THRESH_BINARY)
     # (threshold, img_bw) = cv2.threshold(grayimg, 10, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     median = cv2.medianBlur(img_bw, 5)
     # res = np.hstack((median, img_bw))
@@ -80,7 +96,15 @@ def preprocess_image(img):
     return res
 
 
-def isHandwritten(img):
+def preProcessing(img):
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # Equalizing
+    img = cv2.equalizeHist(img)
+    img = img / 255
+    return img
+
+
+def is_handwritten(img):
     result = False
     pytesseract.pytesseract.tesseract_cmd = 'tesseract'
     img = preprocess_image(img)
@@ -91,3 +115,32 @@ def isHandwritten(img):
         result = True
 
     return result
+
+
+def predict_personality(inputImg):
+    threshold = 0.08
+    pickle_in = open("sample/model_trained.p", "rb")
+    model = pickle.load(pickle_in)
+
+    # success, imgOriginal = handwriting
+    imgOriginal = inputImg
+    img = np.asarray(inputImg)
+    img = cv2.resize(img, (32, 32))
+    img = preProcessing(img)
+    cv2.imshow("Processed image", img)
+    img = img.reshape(1, 32, 32)
+    # Predict
+    predict_x = model.predict(img)
+    classes_x = np.argmax(predict_x, axis=1)
+    classIndex = int(classes_x)
+    # print(classIndex)
+    predictions = model.predict(img)
+    # print(predictions)
+    # Element with highest number
+    probabilityValue = np.amax(predictions)
+    print(classIndex, probabilityValue)
+
+    if probabilityValue > threshold:
+        for key in personalities:
+            if key == classIndex:
+                return personalities[key]
