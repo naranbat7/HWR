@@ -166,14 +166,13 @@ def find_words(inputImg, model):
             classes.append(predict_words(crop_img, model))
 
     count = collections.Counter(classes)
-    print(count.most_common(1))
-    return count.most_common(1)
+    print(count.most_common())
+    return count.most_common(1)[0][0]
 
 
 def predict_personality(inputImg):
     try:
-        threshold = 0.08
-        pickle_in = open("sample/model_trained.p", "rb")
+        pickle_in = open("model_trained.p", "rb")
         model = pickle.load(pickle_in)
 
         classIndex = find_words(inputImg, model)
