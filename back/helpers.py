@@ -1,3 +1,11 @@
+__author__ = "Ariun-Erdene Tumurchuluun"
+__copyright__ = "Copyright 2021, The HWR project"
+__version__ = "1.0.0"
+__maintainer__ = "Ariun-Erdene Tumurchuluun"
+__email__ = "18b1num0515@stud.num.edu.mn"
+__status__ = "Production"
+
+
 import cv2
 import pytesseract
 import numpy as np
@@ -6,6 +14,7 @@ import collections
 
 
 personalities = {
+    0: "ISTP",
     1: "ENFJ",
     2: "ENFP",
     3: "ENTJ",
@@ -16,7 +25,6 @@ personalities = {
     8: "ISFJ",
     9: "ISFP",
     10: "ISTJ",
-    11: "ISTP"
 }
 
 
@@ -88,7 +96,7 @@ def high_boost_filtering(grayimg):
 def preprocess_image(img):
     # processed_img = high_boost_filtering(grayimg)
     grayimg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    (threshold, img_bw) = cv2.threshold(grayimg, 100, 255, cv2.THRESH_BINARY)
+    (threshold, img_bw) = cv2.threshold(grayimg, 200, 255, cv2.THRESH_BINARY)
     # (threshold, img_bw) = cv2.threshold(grayimg, 10, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     median = cv2.medianBlur(img_bw, 5)
     # res = np.hstack((median, img_bw))
@@ -126,15 +134,16 @@ def predict_words(inputImg, model):
     img = preProcessing(img)
     cv2.imshow("Processed image", img)
     img = img.reshape(1, 32, 32)
-    # Predict
+    # Prediction
     predict_x = model.predict(img)
     classes_x = np.argmax(predict_x, axis=1)
     classIndex = int(classes_x)
     predictions = model.predict(img)
     probabilityValue = np.amax(predictions)
-    # print(classIndex, probabilityValue)
+    print(classIndex, probabilityValue)
 
     if probabilityValue > threshold:
+        # print(classIndex, probabilityValue)
         return classIndex
 
 

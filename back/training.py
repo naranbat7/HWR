@@ -25,7 +25,7 @@ path = 'data/'
 testRatio = 0.2
 validationRatio = 0.2
 imageDims = (32, 32, 3)
-batchSizeValue = 5
+batchSizeValue = 3
 epochsValue = 1
 stepsPerEpoch = 10
 ##########################################
@@ -33,11 +33,11 @@ stepsPerEpoch = 10
 images = []
 classNo = []
 myList = os.listdir(path)
-numberOfClasses = len(myList)
+numberOfClasses = len(myList) - 1
 print("Total number of class detected is " + str(numberOfClasses))
 print("Importing these classes ...")
 
-for x in range(1, numberOfClasses):
+for x in range(0, numberOfClasses):
     myPickList = os.listdir(path + str(x))
 
     for y in myPickList:
@@ -66,12 +66,12 @@ print("Testing set: " + str(x_test.shape))
 print("Validation set: " + str(x_validation.shape))
 
 numberOfSamples = []
-for x in range(1, numberOfClasses):
+for x in range(0, numberOfClasses):
     numberOfSamples.append(len(np.where(y_train == x)[0]))
 print("Number of samples: " + str(numberOfSamples))
 
 plt.figure(figsize=(10, 5))
-plt.bar(range(0, numberOfClasses - 1), numberOfSamples)
+plt.bar(range(0, numberOfClasses), numberOfSamples)
 plt.title("Number of images for each class")
 plt.xlabel("Class id")
 plt.ylabel("Number of images")
