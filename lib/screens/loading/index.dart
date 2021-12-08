@@ -52,11 +52,14 @@ class _LoadingPageState extends State<LoadingPage> {
   PsychoModel? _data;
   int _imageIdx = 1;
   String _loader = ".";
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _bloc.add(CommonRequest(file: widget.file));
+    Timer(Duration(seconds: 4), () {
+      _bloc.add(CommonRequest(file: widget.file));
+    });
     _timer = Timer.periodic(Duration(milliseconds: 1000), (timer) {
       setState(() {
         if (_loader == "...")
@@ -75,17 +78,27 @@ class _LoadingPageState extends State<LoadingPage> {
 
   _onFailed(String err) {
     print(err);
-    Navigator.pushNamedAndRemoveUntil(context, RouteName.ERROR, ModalRoute.withName(RouteName.HOME));
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   _onSuccess(PsychoModel data) {
     setState(() {
       _data = data;
+      _isLoading = false;
     });
   }
 
   _onNext() {
-    if (_data != null) Navigator.push(context, MaterialPageRoute(builder: (_) => SuccessPage(_data!)));
+    if (_data != null)
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (_) => SuccessPage(_data!)),
+        ModalRoute.withName(RouteName.HOME),
+      );
+    else
+      Navigator.pushNamedAndRemoveUntil(context, RouteName.ERROR, ModalRoute.withName(RouteName.HOME));
   }
 
   @override
@@ -130,7 +143,7 @@ class _LoadingPageState extends State<LoadingPage> {
                           ],
                         ),
                       ),
-                      _data == null
+                      _isLoading
                           ? Text(
                               "loading".tr() + _loader,
                               style: TextStyle(

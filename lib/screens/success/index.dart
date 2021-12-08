@@ -18,6 +18,7 @@ class _SuccessPageState extends State<SuccessPage> {
   bool _started = false;
 
   _onChanged(int idx) {
+    print(idx);
     if (idx > 0 && !_started) {
       widget.page2.forward();
       _started = true;

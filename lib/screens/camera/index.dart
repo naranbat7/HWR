@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:hwr_app/routes/route_names.dart';
+import 'package:hwr_app/screens/loading/index.dart';
 import 'package:hwr_app/services/tensorflow/index.dart';
 import 'package:hwr_app/widgets/appbar/transparent_appbar.dart';
 import 'package:hwr_app/widgets/button/main_button.dart';
@@ -42,13 +46,38 @@ class _CameraPageState extends State<CameraPage> {
     openAppSettings();
   }
 
+  _onPress() async {
+    if (controller != null) {
+      XFile file = await controller!.takePicture();
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (_) => LoadingPage(file: File(file.path))),
+        ModalRoute.withName(RouteName.HOME),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: TransparentAppBar(
           child: controller != null
-              ? CameraPreview(controller!)
+              ? Stack(
+                  children: [
+                    CameraPreview(controller!),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 40),
+                        child: IconButton(
+                          onPressed: _onPress,
+                          icon: Icon(Icons.camera, size: 50),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               : Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
